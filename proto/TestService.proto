@@ -12,6 +12,8 @@ service AuthenticationService {
 
 service TestService {
     rpc GetPrice(Ticker) returns (stream MonetaryAmount) {}
+
+    rpc GetPriceWithCancellation(stream Ticker) returns (stream MonetaryAmount) {}
 }
 
 message AuthenticationData {
