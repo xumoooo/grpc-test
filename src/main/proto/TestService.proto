@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package com.unitedtrader.derby.test.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.unitedtrader.derby.test.grpc";
+option java_outer_classname = "TestProto";
+
+service AuthenticationService {
+    rpc authenticate(AuthenticationDate) returns (AuthToken) {}
+}
+
+service TestService {
+    rpc GetFeature(AuthenticationDate) returns (AuthToken) {}
+}
+
+message AuthenticationDate {
+    string emailOrLogin = 1;
+    string password = 2;
+}
+
+message AuthToken {
+    string token = 1;
+}
+
+
+message MonetaryAmount {
+    int64 value = 1;
+    Currency currency = 2;
+}
+
+enum Currency {
+    USD = 0;
+    RUB = 1;
+}
