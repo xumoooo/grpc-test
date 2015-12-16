@@ -7,14 +7,14 @@ option java_package = "com.unitedtrader.derby.test.grpc";
 option java_outer_classname = "TestProto";
 
 service AuthenticationService {
-    rpc authenticate(AuthenticationDate) returns (AuthToken) {}
+    rpc authenticate(AuthenticationData) returns (AuthToken) {}
 }
 
 service TestService {
-    rpc GetFeature(AuthenticationDate) returns (AuthToken) {}
+    rpc GetPrice(Ticker) returns (stream MonetaryAmount) {}
 }
 
-message AuthenticationDate {
+message AuthenticationData {
     string emailOrLogin = 1;
     string password = 2;
 }
@@ -23,6 +23,9 @@ message AuthToken {
     string token = 1;
 }
 
+message Ticker {
+    string symbol = 1;
+}
 
 message MonetaryAmount {
     int64 value = 1;
